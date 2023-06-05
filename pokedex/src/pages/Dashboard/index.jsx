@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 import { useEffect, useState } from "react";
-import PokemonCard from "../components/PokemonCard";
-import { Container } from "./styles";
-import { api } from "../services/api";
+import PokemonCard from "../../components/PokemonCard";
+
+import { api } from "../../services/api";
+import { Buttons, Container } from "./styles";
 
 const Dashboard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -14,8 +16,8 @@ const Dashboard = () => {
     api
       .get("/pokemon", {
         params: {
-          limit: 20,
-          offset: 20 * page,
+          limit: 21,
+          offset: 21 * page,
         },
       })
       .then((response) => {
@@ -30,15 +32,17 @@ const Dashboard = () => {
     <>
       <Container>
         {pokemons.map((pokemon, index) => (
-          <PokemonCard key={pokemon.index} name={pokemon.name} />
+          <PokemonCard key={index} name={pokemon.name} />
         ))}
       </Container>
-      <button onClick={() => setPage(page - 1)} disabled={isDisablePrevious}>
-        VOLTAR PAGINA
-      </button>
-      <button onClick={() => setPage(page + 1)} disabled={isDisableNext}>
-        AVANÇAR PAGINA
-      </button>
+      <Buttons>
+        <button onClick={() => setPage(page - 1)} disabled={isDisablePrevious}>
+          VOLTAR PAGINA
+        </button>
+        <button onClick={() => setPage(page + 1)} disabled={isDisableNext}>
+          AVANÇAR PAGINA
+        </button>
+      </Buttons>
     </>
   );
 };
