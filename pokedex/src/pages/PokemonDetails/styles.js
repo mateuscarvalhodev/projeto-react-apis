@@ -41,7 +41,6 @@ export const MiddlePanel = styled.div`
     height: 90%;
     background: #fff;
     border-radius: 8px;
-    /* border: 1px solid red; */
   }
 `;
 export const StatsContainer = styled.div`
@@ -66,8 +65,8 @@ export const Stats = styled.div`
   width: 100%;
   margin-top: 3%;
   font-size: 1vw;
-  border-top: 0.1vw dashed rgba(245, 222, 179, 0.5);
-  border-bottom: 0.1vw dashed rgba(245, 222, 179, 0.5);
+  border-top: 0.1vw dashed #F5DEB3;
+  border-bottom: 0.1vw dashed #F5DEB3;
   padding: 2% 0 2% 0;
   text-align: right;
   span:nth-child(1) {
@@ -89,8 +88,8 @@ export const ProgressBar = styled.div`
 `;
 export const RightPanel = styled.div`
   flex: 2;
-  border: 1px solid red;
   width: 50%;
+  padding-left: 50px;
 `;
 
 export const ImgBackground = styled.img`
@@ -122,4 +121,21 @@ border-radius: 8px;
 h2 {
   padding: 10px;
 }
+`;
+
+export const Attacks = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
+  gap: 10px;
+  
+  
+  p {
+    padding: 10px;
+    background: #ECECEC;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px dashed #D9D9D9;
+  }
 `;

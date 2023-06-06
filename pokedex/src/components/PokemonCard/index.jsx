@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PokemonTypes from "../../pokemonTypes";
 import {
   BackgroundImage,
   ButtonContent,
@@ -9,21 +10,26 @@ import {
   Details,
   Img,
 } from "./styles";
-import charmander from "../../assets/img/charmander.svg";
-import fireType from "../../assets/pokemonTypes/fire.png";
 import backgroundImage from "../../assets/img/pngwing 1.png";
 import { GotoPokemonDetails } from "../../services/coordination";
 import { useNavigate } from "react-router-dom";
-const PokemonCard = ({ name, id }) => {
+const PokemonCard = ({ name, id, pokemonImage, types }) => {
   const navigate = useNavigate();
+
   return (
     <>
       <Container>
-        <ContentCard>
+        <ContentCard types={types}>
           <Details>
             <p>{`#${id}`}</p>
             <h1>{name}</h1>
-            <img src={fireType} alt="fireType" />
+            {types.map((type) => (
+              <img
+                key={type.type.name}
+                src={PokemonTypes[type.type.name]}
+                alt={type.type.name}
+              />
+            ))}
           </Details>
           <ButtonContent>
             <ButtonDetails onClick={() => GotoPokemonDetails(navigate)}>
@@ -33,7 +39,7 @@ const PokemonCard = ({ name, id }) => {
           </ButtonContent>
         </ContentCard>
         <BackgroundImage src={backgroundImage} />
-        <Img src={charmander} />
+        <Img src={pokemonImage} />
       </Container>
     </>
   );

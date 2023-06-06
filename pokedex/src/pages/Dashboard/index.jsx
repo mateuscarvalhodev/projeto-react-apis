@@ -24,16 +24,29 @@ const Dashboard = () => {
         const { next, previous, results } = response.data;
         setIsDisableNext(!next);
         setIsDisablePrevious(!previous);
-        setPokemons(results);
-        console.log(results);
+
+        const promises = results.map((result) => api.get(result.url));
+        Promise.all(promises).then((responses) => {
+          const pokemonData = responses.map((res) => res.data);
+          setPokemons(pokemonData);
+        });
       });
   }, [page]);
   return (
     <>
       <Container>
-        {pokemons.map((pokemon, index) => (
-          <PokemonCard key={index} name={pokemon.name} />
-        ))}
+        {pokemons.map((pokemon, index) => {
+          console.log(pokemon.name, pokemon.types);
+          return (
+            <PokemonCard
+              key={index}
+              name={pokemon.name}
+              id={pokemon.id < 10 ? `0${pokemon.id}` : pokemon.id}
+              pokemonImage={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+              types={pokemon.types}
+            />
+          );
+        })}
       </Container>
       <Buttons>
         <button onClick={() => setPage(page - 1)} disabled={isDisablePrevious}>

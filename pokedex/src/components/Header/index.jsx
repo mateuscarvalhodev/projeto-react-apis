@@ -8,7 +8,7 @@ const Header = () => {
     <>
       <Container>
         <ButtonBackToHome onClick={() => GoToDashBoard(navigate)}>
-          Todos Pokemon
+          <p>Todos Pokemons</p>
         </ButtonBackToHome>
         <Image src={logo} />
         <Button onClick={() => GoToPokedex(navigate)}>Pokedéx</Button>

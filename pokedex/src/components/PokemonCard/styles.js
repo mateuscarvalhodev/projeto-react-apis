@@ -1,5 +1,16 @@
 import styled from "styled-components";
+import theme from '../../themes';
 
+const getBackgroundColor = (types) => {
+  if (types.length > 0) {
+    if (types[0].type.name === 'normal' && types[1]) {
+      return theme.colors.backgroundCard[types[1].type.name] || '#ffffff';
+    }
+    return theme.colors.backgroundCard[types[0].type.name] || '#ffffff';
+  }
+
+  return '#ffffff';
+};
 export const Container = styled.div`
 width: 440px;
 height: 263px;
@@ -12,12 +23,13 @@ position: absolute;
 bottom: 0;
 width: 100%;
 height: 80%;
-background: #EAAB7D;
+background: ${({types}) => getBackgroundColor(types)};
 border-radius: 8px;
 button {
   
 }
 `;
+console.log(theme.colors.backgroundCard);
 
 export const Details = styled.div`
 padding: 20px;
@@ -53,6 +65,7 @@ export const Img = styled.img`
 position: absolute;
 right: 0;
 z-index: 3;
+width: 150px;
 
 `;
 

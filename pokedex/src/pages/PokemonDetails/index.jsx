@@ -3,6 +3,7 @@ import imgBackground from "../../assets/img/pngwing 1.png";
 import fireType from "../../assets/pokemonTypes/fire.png";
 import normalType from "../../assets/pokemonTypes/normal.png";
 import {
+  Attacks,
   Container,
   ImgBackground,
   ImgPokemon,
@@ -84,6 +85,12 @@ const PokemonDetails = () => {
             </PokemonTypes>
             <PokemonAttacks>
               <h2>Moves:</h2>
+              <Attacks>
+                <p>Razor Wind</p>
+                <p>Sword Dance</p>
+                <p>Cut</p>
+                <p>Vine Whip</p>
+              </Attacks>
             </PokemonAttacks>
           </PokemonInfos>
           <ImgBackground src={imgBackground} />
