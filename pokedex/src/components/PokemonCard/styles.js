@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import theme from '../../themes';
 
 const getBackgroundColor = (types) => {
@@ -8,7 +8,7 @@ const getBackgroundColor = (types) => {
     }
     return theme.colors.backgroundCard[types[0].type.name] || '#ffffff';
   }
-
+console.log()
   return '#ffffff';
 };
 export const Container = styled.div`
@@ -29,7 +29,6 @@ button {
   
 }
 `;
-console.log(theme.colors.backgroundCard);
 
 export const Details = styled.div`
 padding: 20px;

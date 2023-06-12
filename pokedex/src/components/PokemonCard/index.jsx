@@ -9,10 +9,10 @@ import {
   ContentCard,
   Details,
   Img,
-} from "./styles";
-import backgroundImage from "../../assets/img/pngwing 1.png";
-import { GotoPokemonDetails } from "../../services/coordination";
-import { useNavigate } from "react-router-dom";
+} from './styles';
+import backgroundImage from '../../assets/img/pngwing 1.png';
+import { GotoPokemonDetails } from '../../services/coordination';
+import { useNavigate } from 'react-router-dom';
 const PokemonCard = ({ name, id, pokemonImage, types }) => {
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const PokemonCard = ({ name, id, pokemonImage, types }) => {
             ))}
           </Details>
           <ButtonContent>
-            <ButtonDetails onClick={() => GotoPokemonDetails(navigate)}>
+            <ButtonDetails onClick={() => GotoPokemonDetails(navigate, id)}>
               Detalhes
             </ButtonDetails>
             <ButtonGet>Capturar!</ButtonGet>

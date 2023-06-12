@@ -1,5 +1,13 @@
 import styled from "styled-components";
-
+import themes from "../../themes";
+const getBackgroundColor = (types) => {
+  if (types.length > 0) {
+    if (types[0].type.name === 'normal' && types[1]) {
+      return themes.colors.backgroundCard[types[1].type.name] || '#ffffff';
+    }
+    return themes.colors.backgroundCard[types[0].type.name] || '#ffffff';
+  }
+}
 export const Container = styled.div`
   display: flex;
   position: relative;
@@ -7,13 +15,14 @@ export const Container = styled.div`
   width: 90%;
   height: 60vh;
   border-radius: 32px;
-  background: #EAAB7D;
+  background: ${({types}) => getBackgroundColor(types)};
   margin-top: 20px;
 `;
 
 export const ImgPokemon = styled.img`
   position: absolute;
   right: 0;
+  width: 200px;
   top: -20%;
 `;
 
@@ -25,10 +34,16 @@ export const LeftPanel = styled.div`
   justify-content: space-around;
   gap: 20px;
   .box1 {
+    display: flex;
     width: 60%;
     height: 230px;
     background: #fff;
     border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+  .box1 img {
+    width: 150px;
   }
 `;
 export const MiddlePanel = styled.div`

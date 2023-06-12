@@ -1,7 +1,6 @@
-import charmander from "../../assets/img/charmander.svg";
+import { useState } from "react";
 import imgBackground from "../../assets/img/pngwing 1.png";
-import fireType from "../../assets/pokemonTypes/fire.png";
-import normalType from "../../assets/pokemonTypes/normal.png";
+
 import {
   Attacks,
   Container,
@@ -17,79 +16,94 @@ import {
   Stats,
   StatsContainer,
 } from "./styles";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+import LoadingIndicator from "../../LoadingIndicator";
+import pokemonTypes from "../../pokemonTypes";
+
 
 const PokemonDetails = () => {
-  const status = [45, 49, 49, 65, 65, 45];
+  const [loading, setLoading] = useState(true);
+  const [pokemon, setPokemon] = useState()
+  let moveCount = 0;
+  let total = 0;
+  if (!loading) {
+    for (const stat of pokemon.stats) {
+      total += stat.base_stat;
+    }
+  }
+  const id = useParams()
+  useEffect(() => {
+
+    console.log(id);
+    api.get(`/pokemon/${id.id}`).then((res) => {
+      setPokemon(res.data);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+  console.log(pokemon);
   return (
     <>
       <h1>Detalhes</h1>
-      <Container>
-        <ImgPokemon src={charmander} alt="charmander" />
+      <Container types={pokemon.types}>
+        <ImgPokemon src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.id} />
         <LeftPanel>
           <div className="box1">
-            <p>oi</p>
+            <img src={pokemon.sprites.front_default} alt={pokemon.id} />
           </div>
           <div className="box1">
-            <p>oi</p>
+            <img src={pokemon.sprites.back_default} alt={pokemon.id} />
           </div>
         </LeftPanel>
         <MiddlePanel>
           <div className="box2">
             <StatsContainer>
               <h2>Base stats</h2>
-              <Stats>
-                <span>HP</span>
-                <span>{status[0]}</span>
+              {pokemon.stats.map((stat) => (
+                <Stats key={stat.stat.name}>
+                  <span>{stat.stat.name}</span>
+                  <span>{stat.base_stat}</span>
 
-                <ProgressBar stat={status[0]}></ProgressBar>
-              </Stats>
-              <Stats>
-                <span>Attack</span>
-                <span>{status[1]}</span>
-                <ProgressBar stat={status[1]}></ProgressBar>
-              </Stats>
-              <Stats>
-                <span>Defense</span>
-                <span>{status[2]}</span>
-                <ProgressBar stat={status[2]}></ProgressBar>
-              </Stats>
-              <Stats>
-                <span>Sp. Atk</span>
-                <span>{status[3]}</span>
-                <ProgressBar stat={status[3]}></ProgressBar>
-              </Stats>
-              <Stats>
-                <span>Sp. Def</span>
-                <span>{status[4]}</span>
-                <ProgressBar stat={status[4]}></ProgressBar>
-              </Stats>
-              <Stats>
-                <span>Speed</span>
-                <span>{status[5]}</span>
-                <ProgressBar stat={status[5]}></ProgressBar>
-              </Stats>
+                  <ProgressBar stat={stat.base_stat}></ProgressBar>
+                </Stats>
+              ))}
+
               <Stats>
                 <p>Total</p>
-                <span>318</span>
+                <span>{total}</span>
               </Stats>
             </StatsContainer>
           </div>
         </MiddlePanel>
         <RightPanel>
           <PokemonInfos>
-            <h2>#01</h2>
-            <h2>Charmander</h2>
+            <h2>#{pokemon.id}</h2>
+            <h2>{pokemon.name}</h2>
             <PokemonTypes>
-              <img src={fireType} alt="fireType" />
-              <img src={normalType} alt="normalType" />
+              {pokemon.types.map((type) => {
+                return (
+                  <img
+                    src={pokemonTypes[type.type.name]}
+                    key={type.type.name}
+                  />
+                );
+              })}
             </PokemonTypes>
             <PokemonAttacks>
               <h2>Moves:</h2>
               <Attacks>
-                <p>Razor Wind</p>
-                <p>Sword Dance</p>
-                <p>Cut</p>
-                <p>Vine Whip</p>
+                {pokemon.moves.map((move, index) => {
+                  if (moveCount < 5) {
+                    moveCount += 1;
+                    return <p key={index}>{move.move.name}</p>;
+                  }
+                })}
               </Attacks>
             </PokemonAttacks>
           </PokemonInfos>

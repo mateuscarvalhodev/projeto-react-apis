@@ -5,17 +5,17 @@ import {
   ButtonBackToHome,
   Spacer,
   DeletePokemonFromPokedex,
-} from "./styles";
-import logo from "../../assets/img/logo.png";
-import { useLocation, useNavigate } from "react-router-dom";
-import { GoToDashBoard, GoToPokedex } from "../../services/coordination";
+} from './styles';
+import logo from '../../assets/img/logo.png';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { GoToDashBoard, GoToPokedex } from '../../services/coordination';
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const renderBackButton = () => {
-    if (location.pathname !== "/") {
+    if (location.pathname !== '/') {
       return (
         <ButtonBackToHome onClick={() => GoToDashBoard(navigate)}>
           <p>Todos Pokemons</p>
@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   const renderActionButton = () => {
-    if (location.pathname === "/PokemonDetails") {
+    if (location.pathname === '/PokemonDetails') {
       return (
         <DeletePokemonFromPokedex>Excluir da Pokédex</DeletePokemonFromPokedex>
       );

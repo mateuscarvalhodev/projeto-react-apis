@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import PokemonCard from "../../components/PokemonCard";
+import { useEffect, useState } from 'react';
+import PokemonCard from '../../components/PokemonCard';
 
-import { api } from "../../services/api";
-import { Buttons, Container } from "./styles";
-import LoadingIndicator from "../../LoadingIndicator";
+import { api } from '../../services/api';
+import { Buttons, Container } from './styles';
+import LoadingIndicator from '../../LoadingIndicator';
 
 const Dashboard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -14,13 +14,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoading(true);
-    api
-      .get("/pokemon", {
-        params: {
-          limit: 21,
-          offset: 21 * page,
-        },
-      })
+    api.get('/pokemon', {
+      params: {
+        limit: 21,
+        offset: 21 * page,
+      },
+    })
       .then((response) => {
         const { next, previous, results } = response.data;
         setIsDisableNext(!next);
@@ -58,11 +57,10 @@ const Dashboard = () => {
   return (
     <>
       <Container>
-        {pokemons.map((pokemon, index) => {
-          console.log(pokemon.name, pokemon.types);
+        {pokemons.map((pokemon) => {
           return (
             <PokemonCard
-              key={index}
+              key={pokemon.id}
               name={pokemon.name}
               id={pokemon.id < 10 ? `0${pokemon.id}` : pokemon.id}
               pokemonImage={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}

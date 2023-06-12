@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import simplePokeBall from "./assets/img/simple_pokeball.gif";
+import styled from 'styled-components';
+import simplePokeBall from './assets/img/simple_pokeball.gif';
 const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
