@@ -1,5 +1,6 @@
 import GlobalStyles from './GlobalStyles';
 import { Router } from './services/Routes';
+import 'tailwindcss/tailwind.css';
 
 const App = () => {
   return (
