@@ -7,7 +7,6 @@ Este projeto é uma Pokedex criada usando React, Vite, Tailwind, Axios, Styled-c
 - Instalação
 - Uso
 - Recursos
-- Contribuição
 - Instalação
 
 Clone o repositório
