@@ -14,13 +14,13 @@ Clone o repositório
 
 ```bash
 
-git clone https://github.com/seunome/seurepositorio.git
+git clone https://github.com/seunome/pokedex.git
 ```
 
 Navegue até o diretório do projeto
 
 ```bash
-cd seurepositorio
+cd pokedex
 ```
 
 instale as dependencias
@@ -52,3 +52,6 @@ Recursos
 - Paginação: Recurso implementado para melhorar a experiência do usuário ao navegar pelos Pokémons.
 
 - O aplicativo permite que os usuários visualizem uma lista de Pokémons, pesquisem Pokémons específicos e salvem seus Pokémons favoritos no LocalStorage para fácil acesso no futuro. A lista de Pokémons suporta a paginação para melhorar a experiência do usuário.
+
+  ![CleanShot 2023-06-25 at 11 41 20@2x](https://github.com/mateuscarvalhodev/projeto-react-apis/assets/71903343/6245e864-c643-486b-bd0c-8b1af5687279)
+
