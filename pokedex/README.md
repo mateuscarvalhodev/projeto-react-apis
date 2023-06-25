@@ -1,4 +1,4 @@
-##Projeto Pokedex
+# \*\*Projeto Pokedex
 
 Este projeto é uma Pokedex criada usando React, Vite, Tailwind, Axios, Styled-components e LocalStorage. O aplicativo é uma simulação da famosa ferramenta dos treinadores de Pokémon, a Pokedex, permitindo que os usuários naveguem, pesquisem e salvem seus Pokémons favoritos.
 
@@ -11,23 +11,33 @@ Este projeto é uma Pokedex criada usando React, Vite, Tailwind, Axios, Styled-c
 - Instalação
 
 Clone o repositório
-bash
-Copy code
+
+```bash
+
 git clone https://github.com/seunome/seurepositorio.git
+```
 
 Navegue até o diretório do projeto
+
+```bash
 cd seurepositorio
+```
 
 instale as dependencias
+
+```bash
 yarn
+```
 
 Uso
 
 Para iniciar o servidor de desenvolvimento:
 
+```bash
 yarn dev
+```
 
-O aplicativo estará disponível no http://localhost:3000.
+O aplicativo estará disponível no http://localhost:5173
 
 Recursos
 
