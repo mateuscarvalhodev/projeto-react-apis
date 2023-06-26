@@ -1,3 +1,4 @@
+import ContextProvider from './Context';
 import GlobalStyles from './GlobalStyles';
 import { Router } from './services/Routes';
 import 'tailwindcss/tailwind.css';
@@ -6,7 +7,9 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      <Router />
+      <ContextProvider>
+        <Router />
+      </ContextProvider>
     </>
   );
 };

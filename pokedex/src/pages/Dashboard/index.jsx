@@ -4,6 +4,7 @@ import PokemonCard from '../../components/PokemonCard';
 import { api } from '../../services/api';
 
 import LoadingIndicator from '../../LoadingIndicator';
+import Modal from '../../components/Modal';
 
 const Dashboard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -56,9 +57,9 @@ const Dashboard = () => {
   }
   return (
     <>
+      <Modal />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
         {pokemons.map((pokemon) => {
-          console.log(pokemon.types)
           return (
             <PokemonCard
               key={pokemon.id}

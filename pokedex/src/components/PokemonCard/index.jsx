@@ -3,6 +3,8 @@ import PokemonTypes from '../../pokemonTypes';
 import { GotoPokemonDetails } from '../../services/coordination';
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../assets/img/pngwing 1.png';
+import { useContext, useEffect, useState } from 'react';
+import { context } from '../../Context';
 
 
 const backgroundColors = {
@@ -23,10 +25,24 @@ const backgroundColors = {
   dragon: 'bg-dragon',
   dark: 'bg-dark',
   fairy: 'bg-fairy',
-  psychic: 'bg-psychic'
+  psychic: 'bg-psychic',
+
 }
 const PokemonCard = ({ name, id, pokemonImage, types }) => {
   const navigate = useNavigate();
+  const pokemon = {
+    name: name,
+    id: id,
+    pokemonImage: pokemonImage,
+    types: types,
+  };
+
+  const { addPokemonToPokedex, removePokemonFromPokedex, pokedex, setShowModal } = useContext(context);
+  const [isPokemonOnPokedex, setIsPokemonOnPokedex] = useState(false);
+
+  useEffect(() => {
+    setIsPokemonOnPokedex(pokedex.find((poke) => poke.id === pokemon.id))
+  }, [pokedex]);
 
   const getBackgroundColor = (types) => {
     if (types.length > 0) {
@@ -62,9 +78,19 @@ const PokemonCard = ({ name, id, pokemonImage, types }) => {
           >
             Detalhes
           </button>
-          <button className='w-36 h-9 border-none rounded-2xl pointer bg-white mt-2.5'>
+          {!isPokemonOnPokedex ? <button
+            className='w-36 h-9 border-none rounded-2xl pointer bg-white mt-2.5 z-50'
+            onClick={() => (addPokemonToPokedex(pokemon), setShowModal(true))}
+          >
             Capturar!
           </button>
+            :
+            <button
+              className='w-36 h-9 border-none rounded-2xl pointer text-white bg-remove mt-2.5 z-50'
+              onClick={() => removePokemonFromPokedex(pokemon)}
+            >
+              Remover!
+            </button>}
         </div>
       </div>
       <img src={backgroundImage} className='absolute right-0 top-0 z-20 w-3/5' />

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import {
   Button,
   Container,
@@ -5,14 +7,28 @@ import {
   ButtonBackToHome,
   Spacer,
   DeletePokemonFromPokedex,
+  AddPokemonToPokedexButton,
 } from './styles';
 import logo from '../../assets/img/logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GoToDashBoard, GoToPokedex } from '../../services/coordination';
+import { useContext, useEffect, useState } from 'react';
+import { context } from '../../Context';
+
+
 
 const Header = () => {
+  const { addPokemonToPokedex, removePokemonFromPokedex, pokedex, pokemonFromHeader } = useContext(context);
+  console.log(pokemonFromHeader);
+
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [isPokemonOnPokedex, setIsPokemonOnPokedex] = useState(false);
+
+  useEffect(() => {
+    setIsPokemonOnPokedex(pokedex.find((poke) => poke.id === pokemonFromHeader.id))
+  })
 
   const renderBackButton = () => {
     if (location.pathname !== '/') {
@@ -27,10 +43,21 @@ const Header = () => {
   };
 
   const renderActionButton = () => {
-    if (location.pathname === '/PokemonDetails') {
-      return (
-        <DeletePokemonFromPokedex>Excluir da Pokédex</DeletePokemonFromPokedex>
-      );
+    if (location.pathname.includes('/PokemonDetails')) {
+      if (isPokemonOnPokedex) {
+        return (
+          <DeletePokemonFromPokedex
+            onClick={() => removePokemonFromPokedex(pokemonFromHeader)}
+          >Excluir da Pokédex</DeletePokemonFromPokedex>
+        );
+      } else {
+        return (
+          <AddPokemonToPokedexButton
+            onClick={() => addPokemonToPokedex(pokemonFromHeader)}
+          >Capturar</AddPokemonToPokedexButton>
+        )
+      }
+
     } else {
       return <Button onClick={() => GoToPokedex(navigate)}>Pokedéx</Button>;
     }

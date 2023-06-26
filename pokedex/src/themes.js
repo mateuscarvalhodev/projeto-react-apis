@@ -8,7 +8,7 @@
 //   },
 
 //   backgroundCard: {
-//     grass: '#729F92',
+//     grass: '#red',
 //     fire: '#ffa756',
 //     water: '#58abf6',
 //     poison: '#9f6e97',

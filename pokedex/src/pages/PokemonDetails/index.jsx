@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import imgBackground from "../../assets/img/pngwing 1.png";
 
 
@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import LoadingIndicator from "../../LoadingIndicator";
 import pokemonTypes from "../../pokemonTypes";
+import { context } from "../../Context";
 
 const backgroundColors = {
   grass: 'bg-grass',
@@ -30,6 +31,9 @@ const backgroundColors = {
   fairy: 'bg-fairy',
   psychic: 'bg-psychic'
 }
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+
 const getBackgroundColor = (types) => {
   if (types.length > 0) {
     if (types[0].type.name === 'normal' && types[1]) {
@@ -41,6 +45,7 @@ const getBackgroundColor = (types) => {
 };
 
 const PokemonDetails = () => {
+  const { setPokemonFromHeader } = useContext(context);
   const [loading, setLoading] = useState(true);
   const [pokemon, setPokemon] = useState()
   const id = useParams();
@@ -48,6 +53,7 @@ const PokemonDetails = () => {
   useEffect(() => {
     api.get(`/pokemon/${id.id}`).then((res) => {
       setPokemon(res.data);
+      setPokemonFromHeader(res.data);
       setLoading(false);
     }).catch((err) => {
       console.log(err);

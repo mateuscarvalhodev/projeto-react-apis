@@ -56,3 +56,16 @@ export const DeletePokemonFromPokedex = styled.button`
   margin-left: auto;
   margin-right: 32px;
 `;
+
+export const AddPokemonToPokedexButton = styled.button`
+width: 287px;
+  height: 74px;
+  background: #33a4f5;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 24px;
+  margin-left: auto;
+  margin-right: 32px;
+`;

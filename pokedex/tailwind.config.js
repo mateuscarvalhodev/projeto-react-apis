@@ -25,7 +25,8 @@ export default {
         dragon: '#7038f8',
         dark: '#705848',
         fairy: '#ee99ac',
-        psychic: '#f85888'
+        psychic: '#f85888',
+        remove:'#B22222'
       },
       spacing: {
         '500px': '500px'
