@@ -13,7 +13,7 @@ Clone o repositório
 
 ```bash
 
-git clone https://github.com/seunome/pokedex.git
+git clone https://github.com/mateuscarvalhodev/pokedex.git
 ```
 
 Navegue até o diretório do projeto
